@@ -4,7 +4,7 @@ import * as db from '../../db.js';
 import * as tokentool from './tokentool.js';
 
 export const register = async ctx => {
-  console.log("api/auth/register")
+  console.log("api/auth/register");
   // Joi 스키마 생성 및 검증
   const schema = Joi.object().keys({
     username: Joi.string()
@@ -33,7 +33,7 @@ export const register = async ctx => {
         ctx.cookies.set('access_token', token, {
           maxAge: 1000*60*60*24*7,
           httpOnly: true,
-        })
+        });
         ctx.body = username;
       } catch(e) {
         ctx.throw(500, e);
@@ -47,7 +47,7 @@ export const register = async ctx => {
   } catch(e) {
     ctx.throw(500, e);
   }
-}
+};
 
 export const login = async ctx => {
   const { username, password }= ctx.request.body;
@@ -70,13 +70,13 @@ export const login = async ctx => {
     ctx.cookies.set('access_token', token, {
       maxAge: 1000*60*60*24*7,
       httpOnly: true,
-    })
+    });
     delete user[0].hashedpassword;
     ctx.body = user;
   } catch (e) {
     ctx.throw(500, e);
   }
-}
+};
 
 export const check = async ctx => {
   const { user }  = ctx.state;
@@ -87,9 +87,9 @@ export const check = async ctx => {
     return;
   }
   ctx.body = user;
-}
+};
 
 export const logout = async ctx => {
   ctx.cookies.set('access_token');
   ctx.status = 204;
-}
+};
