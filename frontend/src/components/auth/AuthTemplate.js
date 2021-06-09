@@ -35,6 +35,7 @@ const WhiteBox = styled.div`
 
 
 const AuthTemplate = ({ children }) => {
+  console.log('src/components/auth/AuthTemplate');
   return (
     <AuthTemplateBlock>
       <WhiteBox>

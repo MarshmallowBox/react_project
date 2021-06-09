@@ -30,8 +30,10 @@ const LoginForm = () => {
   useEffect(() => {
     dispatch(initializeForm('login'));
   }, [dispatch]);
-
+  
+  console.log('src/containers/auth/LoginForm');
   return (
+    
     <AuthForm
       type="login"
       form={form}

@@ -31,6 +31,7 @@ const RegisterForm = () => {
     dispatch(initializeForm('register'));
   }, [dispatch]);
 
+console.log('src/containers/auth/RegisterForm');
   return (
     <AuthForm
       type="register"
