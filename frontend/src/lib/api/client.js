@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const client = axios.create();
 
+
 // client.defaults.baseURL = "http://localhost:4000"
 // client.defaults.headers = {
 //   "Content-type" = application/json";
@@ -33,3 +34,5 @@ const client = axios.create();
     }
   })  
 */
+
+export default client;
