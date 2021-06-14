@@ -99,20 +99,20 @@ const TagBox = ({ tags, onChangeTags }) => {
       if (!tag) return; // 공백이라면 추가하지 않음
       if (localTags.includes(tag)) return; // 이미 존재한다면 추가하지 않음
       // props로 받아온 onChangeTags를 활용
-      // const nextTags = [...localTags, tag];
+      const nextTags = [...localTags, tag];
       setLocalTags([...localTags, tag]);
-      // onChangeTags(nextTags);
+      onChangeTags(nextTags);
     },
-    [localTags],
+    [localTags, onChangeTags],
   );
   
-  const onRemove = useCallback(
+ const onRemove = useCallback(
     tag => {
-      // const nextTags = localTags.filter(t => t !== tag);
-      setLocalTags(localTags.filter(t => t !== tag));
-      // onChangeTags(nextTags);
+      const nextTags = localTags.filter(t => t !== tag);
+      setLocalTags(nextTags);
+      onChangeTags(nextTags);
     },
-    [localTags],
+    [localTags, onChangeTags],
   );
   
   const onChange = useCallback(e => {
