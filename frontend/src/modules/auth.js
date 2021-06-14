@@ -26,14 +26,15 @@ export const changeField = createAction(
 
 // register/login
 export const initializeForm = createAction(INITIALIZE_FORM, form => form);
-export const login = createAction(LOGIN, ({ username, password }) => ({
-  username,
-  password,
-}));
 export const register = createAction(REGISTER, ({ username, password }) => ({
   username,
   password,
 }));
+export const login = createAction(LOGIN, ({ username, password }) => ({
+  username,
+  password,
+}));
+
 
 // 사가 생성 (Backend API 쓰기)
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
@@ -60,14 +61,28 @@ const initialState = {
 
 const auth = handleActions(
   {
-    [CHANGE_FIELD]: (state, { payload: form, key, value }) => 
+    [CHANGE_FIELD]: (state, { payload: { form, key, value }}) => 
       produce(state, draft => {
         draft[form][key] = value;  // state.register.username을 바꾼다
       }),
     [INITIALIZE_FORM]: (state, { payload: form }) => ({ //payload: { form } = payload.form
       ...state,
-      [form]: initialState[form]
+      [form]: initialState[form],
+      authError: null,  // 폼 전환 시 회원 인증 에러 초기화
     }),
+    
+    // 회원가입
+    [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
+      ...state,
+      authError: null,
+      auth,
+    }),
+    [REGISTER_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      authError: error,
+    }),
+    
+    // 로그인
     [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
@@ -77,15 +92,6 @@ const auth = handleActions(
       ...state,
       authError: error,
     }),
-    [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
-      ...state,
-      authError: null,
-      auth,
-    }),
-    [REGISTER_FAILURE]: (state, { payload: error }) => ({
-      ...state,
-      authError: error,
-    })
   },
     
   initialState,
