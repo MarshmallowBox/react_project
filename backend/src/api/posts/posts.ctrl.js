@@ -7,13 +7,15 @@ export const write = async ctx => {
   }
   const { username } = ctx.state.user;
   try {
-    await db.query(`insert into posts values(default, '${title}','${body}', '${username}')`);
-    ctx.status = 204;
+    ctx.body = await db.query(`insert into posts values(default, '${title}','${body}', '${username}') RETURNING postnum`).then(c => c.rows[0].postnum);
+    ctx.status = 200;
+    console.log(ctx.body);
   } catch(e) {
     ctx.throw(500, e);
+    return;
   }
-  console.log(title, body);
-  ctx.body = title;
+  // console.log(title, body);
+  // ctx.body = title;
 };
 
 //GET /api/posts?username=&page=
