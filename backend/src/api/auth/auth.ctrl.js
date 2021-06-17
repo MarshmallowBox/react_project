@@ -61,6 +61,7 @@ export const login = async ctx => {
   
   try {
     const user = await db.query(`select * from users where username = '${username}'`).then(c => c.rows);
+    console.log(user);
     const valid = await bcrypt.compare(password, user[0].hashedpassword);
     if (!valid) {
       ctx.status = 401;
