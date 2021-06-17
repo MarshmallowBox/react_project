@@ -55,7 +55,7 @@ const LoginForm = ({ history }) => {
   // 로그인 이후 메인 페이지로 이동
   useEffect (() => {
     if (user) {
-      history.push('/');
+      history.push('/post');
       try {
         localStorage.setItem('user', JSON.stringify(user));
       } catch(e) {
