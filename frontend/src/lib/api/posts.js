@@ -8,5 +8,5 @@ export const writePost = ({ title, body, tags }) => {
 
 export const readPost = postnum => {
   console.log('lib/api/posts readPost API');
-  return client.post(`api/posts/${postnum}`,)
+  return client.get(`/api/posts/${postnum}`,)
 };

@@ -5,6 +5,7 @@ import { readPost, unloadPost } from '../../modules/post';
 import PostViewer from '../../components/post/PostViewer';
 
 const PostViewerContainer = ({ match }) => {
+  console.log('PostViewerContainer');
   // 처음 마운트 될 때 포ㅅ트 읽기 API 요청
   const { postId } = match.params;
   console.log(postId);
