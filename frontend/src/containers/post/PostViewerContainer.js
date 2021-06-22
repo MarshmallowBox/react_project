@@ -8,12 +8,11 @@ const PostViewerContainer = ({ match }) => {
   console.log('PostViewerContainer');
   // 처음 마운트 될 때 포ㅅ트 읽기 API 요청
   const { postId } = match.params;
-  console.log(postId);
   const dispatch = useDispatch();
   const { post, error, loading } = useSelector (({ post, loading }) => ({
     post: post.post,
     error: post.error,
-    loading: loading['post/Read_post'],
+    loading: loading['post/READ_POST'],
   }));
   
   useEffect(() => {

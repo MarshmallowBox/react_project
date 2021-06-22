@@ -45,7 +45,7 @@ const Header = ({ user, onLogout }) => {
     <>
       <HeaderBlock>
         <Wrapper>
-          <Link to="/" className="logo">Doya Log</Link>
+          <Link to="/post" className="logo">Doya Log</Link>
           <div className="right">
           {user ? (
             <div className="right">
