@@ -24,9 +24,6 @@ const SubInfoBlock = styled.div`
 
 // hasMarginTop 값이 true이면 상단 여백을 주고, 그렇지 않으면 여백이 없음
 const SubInfo = ({ username, publishedDate, hasMarginTop }) => {
-  console.log('SubInfo');
-  console.log(username);
-  console.log(publishedDate);
   return (
     <SubInfoBlock hasMarginTop={hasMarginTop}>
       <span>

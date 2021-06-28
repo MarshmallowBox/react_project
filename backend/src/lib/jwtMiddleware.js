@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import * as tokentool from '../api/auth/tokentool.js';
+
 const jwtMiddleware = (ctx, next) => {
   console.log('lib/jwtMiddleware');
   const token = ctx.cookies.get('access_token');
