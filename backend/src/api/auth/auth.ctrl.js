@@ -80,6 +80,7 @@ export const login = async ctx => {
 };
 
 export const check = async ctx => {
+  console.log('checkLoggedIn');
   const { user }  = ctx.state;
   console.log(user);
   if(!user) {

@@ -42,11 +42,6 @@ const WriteActionButtonsContainer = ({ history }) => {
 
 // 성공 혹은 실패 시 할 작업
   useEffect(() => {
-    console.log('WriteActionButtonContainer useEffect 내부');
-    console.log(postnum);
-    console.log(title);
-    console.log(body);
-    console.log(tags);
     if (postnum) {
       console.log('containers/write/WriteActionButtonContainer Success');
       // const { _id, user } = post;
@@ -56,7 +51,6 @@ const WriteActionButtonsContainer = ({ history }) => {
       console.log('containers/write/WriteActionButtonContainer Error');
       console.log(postError);
     }
-    console.log('WriteActionButtonContainer useEffect 끝');
   }, [history, title,body,tags, postnum, postError]);
   
   return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} />;
