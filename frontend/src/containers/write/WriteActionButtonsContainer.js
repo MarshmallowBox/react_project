@@ -2,17 +2,18 @@ import React, { useEffect } from 'react';
 import WriteActionButtons from '../../components/write/WriteActionButtons';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { writePost } from '../../modules/write';
+import { writePost, updatePost } from '../../modules/write';
 
 
 const WriteActionButtonsContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { title, body, tags, postnum, postError } = useSelector(({ write }) => ({
+  const { title, body, tags, postnum, postError, originalPostId } = useSelector(({ write }) => ({
     title: write.title,
     body: write.body,
     tags: write.tags,
     postnum: write.postnum,
     postError: write.postError,
+    originalPostId: write.originalPostId,
   }));
 
 
@@ -20,6 +21,10 @@ const WriteActionButtonsContainer = ({ history }) => {
 // 포스트 등록
   const onPublish = () => {
     console.log('포스트 등록 버튼 클릭');
+    if (originalPostId) {
+      dispatch(updatePost({ title, body, tags, id: originalPostId }));
+      return;
+    }
     dispatch(
       writePost({
         title,
@@ -53,7 +58,7 @@ const WriteActionButtonsContainer = ({ history }) => {
     }
   }, [history, title,body,tags, postnum, postError]);
   
-  return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} />;
+  return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={!!originalPostId}/>;
 };
 
 

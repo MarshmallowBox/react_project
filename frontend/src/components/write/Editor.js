@@ -75,6 +75,15 @@ useEffect(() => {
 //     quillInstance.current.root.innerHTML = body;
 //   }, [body]);
 
+// 컴포넌트가 화면에 마운트 되고 나서 단 한번만 useEffect에 등록한 작업이 실행 되어야 한다
+// 따라서 useRef를 사용하여 mount 상태에 따라 작업을 처리하도록 설정
+const mounted = useRef(false);
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+    quillInstance.current.root.innerHTML = body;
+  }, [body]);
+
 const onChangeTitle = e => {
   onChangeField({ key: 'title', value: e.target.value });
 };

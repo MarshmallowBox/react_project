@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -100,7 +100,7 @@ const TagBox = ({ tags, onChangeTags }) => {
       if (localTags.includes(tag)) return; // 이미 존재한다면 추가하지 않음
       // props로 받아온 onChangeTags를 활용
       const nextTags = [...localTags, tag];
-      setLocalTags([...localTags, tag]);
+      setLocalTags(nextTags);
       onChangeTags(nextTags);
     },
     [localTags, onChangeTags],
@@ -129,9 +129,9 @@ const TagBox = ({ tags, onChangeTags }) => {
   );
   
     // tags 값이 바뀔 때
-  // useEffect(() => {
-  //   setLocalTags(tags);
-  // }, [tags]);
+  useEffect(() => {
+    setLocalTags(tags);
+  }, [tags]);
   
  return (
     <TagBoxBlock>

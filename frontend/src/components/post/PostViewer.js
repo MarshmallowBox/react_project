@@ -24,7 +24,7 @@ const PostContents = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostViewer = ({ post, error, loading }) => {
+const PostViewer = ({ post, error, loading, actionButtons }) => {
   // 에러 발생시
   if (error) {
     if (error.response && error.response.status === 404 ) {
@@ -53,6 +53,7 @@ const PostViewer = ({ post, error, loading }) => {
           tags={tags}
         />
       </PostHead>
+      {actionButtons}
       <PostContents
         dangerouslySetInnerHTML={{__html: body }}
       />
